@@ -3,35 +3,42 @@
 ;;
 
 ;; load path
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
-
+;; turn off menu-bar and tool-bar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
-(when (require 'ido nil t)
-  (setq ido-enable-flex-matching t)
-  (setq ido-everywhere t)
-  (add-to-list 'ido-ignore-directories "\\`trace/")
-  (ido-mode 1) ;; buffer change
-)
-
+(defalias 'yes-or-no-p 'y-or-n-p)
 (setq make-backup-files nil)
 
+;; 
 ;; global key mapping
+;; 
 (global-set-key (kbd "C-?") 'help-command)
 (global-set-key (kbd "<f1>") 'help-command)
 (global-set-key (kbd "M-?") 'mark-paragraph)
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-h") 'backward-kill-word)
 (global-set-key (kbd "C-c l") 'goto-line)
-
 (global-set-key (kbd "<f2>") 'recompile)
 (global-set-key (kbd "<f3>") 'previous-error)
 (global-set-key (kbd "<f4>") 'next-error)
 (global-set-key (kbd "<f5>") 'compile)
 
+;; 
+;; ido
+;; 
+(when (require 'ido nil t)
+  (setq ido-enable-flex-matching t)
+  (setq ido-everywhere t)
+  ;; (add-to-list 'ido-ignore-directories "\\`trace/")
+  (ido-mode 1) ;; buffer change
+)
+
+;; 
 ;; default indentation
+;; 
 (setq-default tab-width        4
               indent-tabs-mode nil)
 
